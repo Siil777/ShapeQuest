@@ -1,9 +1,11 @@
 import './App.css';
 import React, { useEffect, useState } from 'react';
+import CircularProgressIcon from './components/progressCircle.js';
 function App() {
   const [questions, setQuestions] = useState([]);
   const [currenIndexQuestion, setCurrentIndexQuestion] = useState(0);
   const [loading, setLoading] = useState(false);
+  const [progress, setProgress] = useState(0);
 
   useEffect(()=>{
     fetch('http://localhost:5000/get/data')
@@ -19,11 +21,13 @@ function App() {
   const handleNextQuestion = () => {
     if(currenIndexQuestion<questions.length-1){
       setCurrentIndexQuestion(currenIndexQuestion + 1);
+      setProgress((prevProgress)=> Math.min(prevProgress + Math.floor(100/questions.length), 100));
     }
   }
   const handlePreviousQuestion = () => {
     if(currenIndexQuestion>0){
       setCurrentIndexQuestion(currenIndexQuestion - 1);
+      setProgress((prevProgress)=> Math.max(prevProgress - Math.floor(100/questions.length), 0));
     }
   }
   if(loading) return <p>Loading...</p>
@@ -41,7 +45,7 @@ function App() {
             Next 
           </button>
         </div>
-
+        <CircularProgressIcon value={progress} />
       </div>
     ):(
       <p>No questions avalible...</p>

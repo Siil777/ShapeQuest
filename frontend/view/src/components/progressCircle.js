@@ -35,17 +35,4 @@ function CircularProgressIcon(props){
 CircularProgressIcon.propTypes={
     value: propTypes.number.isRequired,
 }
-export default function CircularProgressIconValue(){
-    const [progress,setProgress] =React.useState(10);
-
-    React.useEffect(()=>{
-        const timer = setInterval(()=>{
-            setProgress((prevProgress)=>(prevProgress>=100 ? 0 : prevProgress + 10));
-        }, 800);
-        return ()=>{
-            clearInterval(timer);
-        };
-    }, []);
-
-    return <CircularProgressIcon value={progress} />
-}
+export default CircularProgressIcon;
