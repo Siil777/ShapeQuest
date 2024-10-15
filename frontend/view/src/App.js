@@ -11,11 +11,13 @@ function App() {
     fetch('http://localhost:5000/get/data')
     .then((response)=>response.json())
     .then((data)=>{
+      console.log(data);
       setQuestions(data.questions);
       setLoading(false);
 
     })
     .catch((error)=>console.error('fetch error occurred', error));
+    setLoading(false);
   }, []);
 
   const handleNextQuestion = () => {
@@ -36,7 +38,12 @@ function App() {
    <div className='d-grid justify-content-center mt-5'>
     {questions ?(
       <div>
-        <p>{questions[currenIndexQuestion]}</p>
+        <p>{questions[currenIndexQuestion]?.question}</p>
+        <ul>
+          {questions[currenIndexQuestion]?.answers.map((answer,index)=>(
+            <li key={index}>{answer}</li>
+          ))}
+        </ul>
         <div className='d-flex justify-content-center gap-3'>
           <button onClick={handlePreviousQuestion} disabled={currenIndexQuestion===0}>
               Previous

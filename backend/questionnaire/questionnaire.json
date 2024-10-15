@@ -1,10 +1,60 @@
 {
     "questions": [
-        "What is your primary motivation for losing weight?",
-        "What is your current level of physical activity?",
-        "What are your dietary habits?",
-        "Have you tried to lose weight before?",
-        "What challenges do you anticipate in your weight loss journey?",
-        "What is your target weight and timeframe?"
+        {
+            "question": "What is your primary motivation for losing weight?",
+            "answers": [
+                "Health improvement",
+                "Aesthetic reasons",
+                "Increased energy levels",
+                "Medical recommendation",
+                "Other"
+            ]
+        },
+        {
+            "question": "What is your current level of physical activity?",
+            "answers": [
+                "Sedentary",
+                "Lightly active",
+                "Moderately active",
+                "Very active"
+            ]
+        },
+        {
+            "question": "What are your dietary habits?",
+            "answers": [
+                "I eat a balanced diet",
+                "I prefer fast food",
+                "I’m a vegetarian",
+                "I’m on a special diet (keto, paleo, etc.)"
+            ]
+        },
+        {
+            "question": "Have you tried to lose weight before?",
+            "answers": [
+                "Yes",
+                "No"
+            ]
+        },
+        {
+            "question": "What challenges do you anticipate in your weight loss journey?",
+            "answers": [
+                "Lack of time",
+                "Cravings",
+                "Social pressure",
+                "Lack of motivation",
+                "Other"
+            ]
+        },
+        {
+            "question": "What is your target weight and timeframe?",
+            "answers": [
+                "Under 1 month",
+                "1-3 months",
+                "3-6 months",
+                "6-12 months",
+                "More than a year"
+            ]
+        }
     ]
 }
+
