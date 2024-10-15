@@ -1,6 +1,7 @@
 import './App.css';
 import React, { useEffect, useState } from 'react';
 import CircularProgressIcon from './components/progressCircle.js';
+import ButtonGroupComponent from './components/buttons.js';
 function App() {
   const [questions, setQuestions] = useState([]);
   const [currenIndexQuestion, setCurrentIndexQuestion] = useState(0);
@@ -23,13 +24,13 @@ function App() {
   const handleNextQuestion = () => {
     if(currenIndexQuestion<questions.length-1){
       setCurrentIndexQuestion(currenIndexQuestion + 1);
-      setProgress((prevProgress)=> Math.min(prevProgress + Math.floor(100/questions.length), 100));
+      setProgress((prevProgress)=> Math.min(prevProgress + Math.floor(120/questions.length), 100));
     }
   }
   const handlePreviousQuestion = () => {
     if(currenIndexQuestion>0){
       setCurrentIndexQuestion(currenIndexQuestion - 1);
-      setProgress((prevProgress)=> Math.max(prevProgress - Math.floor(100/questions.length), 0));
+      setProgress((prevProgress)=> Math.max(prevProgress - Math.floor(120/questions.length), 0));
     }
   }
   if(loading) return <p>Loading...</p>
@@ -45,12 +46,12 @@ function App() {
           ))}
         </ul>
         <div className='d-flex justify-content-center gap-3'>
-          <button onClick={handlePreviousQuestion} disabled={currenIndexQuestion===0}>
-              Previous
-          </button>
-          <button onClick={handleNextQuestion} disabled={currenIndexQuestion===questions.length-1}>
-            Next 
-          </button>
+         <ButtonGroupComponent 
+         onNext={handleNextQuestion}
+         onPrevious={handlePreviousQuestion}
+         disableNext={currenIndexQuestion===questions.length-1}
+         disablePrevious={currenIndexQuestion===0}
+         />
         </div>
         <CircularProgressIcon value={progress} />
       </div>
