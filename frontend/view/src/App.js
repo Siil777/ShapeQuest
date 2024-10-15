@@ -2,11 +2,13 @@ import './App.css';
 import React, { useEffect, useState } from 'react';
 import CircularProgressIcon from './components/progressCircle.js';
 import ButtonGroupComponent from './components/buttons.js';
+import RadioButton from './components/radiobuttons.js';
 function App() {
   const [questions, setQuestions] = useState([]);
   const [currenIndexQuestion, setCurrentIndexQuestion] = useState(0);
   const [loading, setLoading] = useState(false);
   const [progress, setProgress] = useState(0);
+  const [selectedAnswer, setSelectedAnswer] = useState('');
 
   useEffect(()=>{
     fetch('http://localhost:5000/get/data')
@@ -26,12 +28,17 @@ function App() {
       setCurrentIndexQuestion(currenIndexQuestion + 1);
       setProgress((prevProgress)=> Math.min(prevProgress + Math.floor(120/questions.length), 100));
     }
+    setSelectedAnswer('');
   }
   const handlePreviousQuestion = () => {
     if(currenIndexQuestion>0){
       setCurrentIndexQuestion(currenIndexQuestion - 1);
       setProgress((prevProgress)=> Math.max(prevProgress - Math.floor(120/questions.length), 0));
     }
+    setSelectedAnswer('');
+  }
+  const handleAnswerChange = (event) => {
+    setSelectedAnswer(event.target.value);
   }
   if(loading) return <p>Loading...</p>
 
@@ -42,10 +49,16 @@ function App() {
         <p>{questions[currenIndexQuestion]?.question}</p>
         <ul>
           {questions[currenIndexQuestion]?.answers.map((answer,index)=>(
-            <li key={index}>{answer}</li>
+            <RadioButton 
+            key={index}
+            value={answer}
+            onChange={handleAnswerChange}
+            checked={selectedAnswer===answer}
+            name={`question-${currenIndexQuestion}`}
+            />
           ))}
         </ul>
-        <div className='d-flex justify-content-center gap-3'>
+        <div className='d-flex justify-content-center gap-5'>
          <ButtonGroupComponent 
          onNext={handleNextQuestion}
          onPrevious={handlePreviousQuestion}
