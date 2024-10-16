@@ -14,7 +14,13 @@ function App() {
   const [selectedAnswer, setSelectedAnswer] = useState('');
   const [allAnswers, setAllAnswers] = useState([]);
   useEffect(()=>{
-    fetch('http://localhost:5000/get/data')
+    fetch(' https://backend-klt0gqc4t-olivers-projects-6baf31af.vercel.app/get/data',{
+      method: 'GET',
+      headers:{
+        'Authorization': `Bearer obTwytpxHvbZitopU1Xhi5FV`,
+        'Content-Type': 'application/json'
+      }
+    })
     .then((response)=>response.json())
     .then((data)=>{
       console.log(data);
