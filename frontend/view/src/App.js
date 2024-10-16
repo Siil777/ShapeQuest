@@ -14,10 +14,9 @@ function App() {
   const [selectedAnswer, setSelectedAnswer] = useState('');
   const [allAnswers, setAllAnswers] = useState([]);
   useEffect(()=>{
-    fetch(' https://backend-klt0gqc4t-olivers-projects-6baf31af.vercel.app/get/data',{
+    fetch(' http:/localhost:5000/get/data',{
       method: 'GET',
       headers:{
-        'Authorization': `Bearer obTwytpxHvbZitopU1Xhi5FV`,
         'Content-Type': 'application/json'
       }
     })

@@ -2,10 +2,9 @@
 
 const handleSubmit = (selectedAnswer) => {
 
-    fetch('https://backend-hpteqpghg-olivers-projects-6baf31af.vercel.app/submit/answers',{
+    fetch('http:/localhost:5000/submit/answers',{
         method: 'POST',
         headers: {
-            'Authorization': `Bearer obTwytpxHvbZitopU1Xhi5FV`,
             'Content-Type':'application/json'
         },
         body: JSON.stringify({selectedAnswer})
