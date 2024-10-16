@@ -1,5 +1,6 @@
 # Ignore node_modules for both backend and frontend
 /backend/node_modules/
+/backend/vercel/
 /frontend/view/node_modules/
 
 # Ignore package manager files
