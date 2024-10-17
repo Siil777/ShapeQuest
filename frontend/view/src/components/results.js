@@ -2,7 +2,7 @@
 
 const handleSubmit = (selectedAnswer) => {
 
-    fetch('http:/localhost:5000/submit/answers',{
+    fetch('http://localhost:5000/submit/answers',{
         method: 'POST',
         headers: {
             'Content-Type':'application/json'

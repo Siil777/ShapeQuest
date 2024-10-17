@@ -7,7 +7,6 @@ const app = express();
 
 const allowedOrigins = [
     'https://siil777.github.io',
-    'https://backend-z9ob6p9cu-olivers-projects-6baf31af.vercel.app',
     'http://localhost:3000',
 ];
 
@@ -34,7 +33,7 @@ const corsOptions = {
 app.use(cors(corsOptions));
 
 app.use((req, res, next) => {
-    res.setHeader("Access-Control-Allow-Origin", "http://localhost:3000");
+    res.setHeader("Access-Control-Allow-Origin", "https://siil777.github.io");
     res.header(
         "Access-Control-Allow-Headers",
         "Origin, X-Requested-With, Content-Type, Accept"
@@ -119,21 +118,5 @@ app.get('*', (req, res) => {
 });
 app.listen(port, () => {
     console.log(`Server running on port ${port}`);
-}); 
-module.exports = app; 
-/* const app = require('express')();
-const { v4 } = require('uuid');
-
-app.get('/', (req, res) => {
-  const path = `/item/${v4()}`;
-  res.setHeader('Content-Type', 'text/html');
-  res.setHeader('Cache-Control', 's-max-age=1, stale-while-revalidate');
-  res.end(`<p>Hello! Go to item: <a href="${path}">${path}</a></p>`);
 });
-
-app.get('/item/:slug', (req, res) => {
-  const { slug } = req.params;
-  res.end(`<p>Item: ${slug}</p><a href="/">Go back</a>`);
-}); */
-
 module.exports = app;

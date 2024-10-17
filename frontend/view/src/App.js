@@ -14,10 +14,10 @@ function App() {
   const [selectedAnswer, setSelectedAnswer] = useState('');
   const [allAnswers, setAllAnswers] = useState([]);
   useEffect(()=>{
-    fetch(' http:/localhost:5000/get/data',{
+    fetch('http://localhost:5000/get/data',{
       method: 'GET',
-      headers:{
-        'Content-Type': 'application/json'
+      headers: {
+        'Content-Type':'application/json'
       }
     })
     .then((response)=>response.json())
