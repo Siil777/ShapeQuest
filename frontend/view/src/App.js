@@ -4,6 +4,7 @@ import CircularProgressIcon from './components/progressCircle.js';
 import ButtonGroupComponent from './components/buttons.js';
 import RadioButton from './components/radiobuttons.js';
 import handleSubmit from './components/results.js';
+import AlertComponent from './components/alertcomponent.js';
 import Badges from './components/badges.js';
 import './scss/style.scss';
 
@@ -14,6 +15,7 @@ function App() {
   const [progress, setProgress] = useState(0);
   const [selectedAnswer, setSelectedAnswer] = useState('');
   const [allAnswers, setAllAnswers] = useState([]);
+  const [alert, setAlert] = useState({ score: null, feedback: '', visible: false });
   useEffect(()=>{
     fetch('http://localhost:5000/get/data',{
       method: 'GET',
@@ -50,11 +52,14 @@ function App() {
     setSelectedAnswer(allAnswers[currenIndexQuestion - 1] ||'');
   }
   const finalResult = () => {
-    handleSubmit(allAnswers, questions);
+    handleSubmit(allAnswers, setAlert);
   }
   const handleAnswerChange = (event) => {
     setSelectedAnswer(event.target.value);
   }
+  const handleCloseAlert = () => {
+    setAlert({ ...alert, visible: false });
+  };
   if(loading) return <p>Loading...</p>
 
   return(
@@ -68,6 +73,14 @@ function App() {
           </Badges>
             
         )}
+        <div>
+{/*         {currenIndexQuestion===questions.length && (
+          <DividerInModalDialog>
+            With kind regards
+          </DividerInModalDialog>
+            
+        )} */}
+        </div>
       <p>{questions[currenIndexQuestion]?.question}</p>
         <ul>
           {questions[currenIndexQuestion]?.answers.map((answer,index)=>(
@@ -99,6 +112,7 @@ function App() {
     ):(
       <p>No questions avalible...</p>
     )}
+    <AlertComponent alert={alert} onClose={handleCloseAlert} />
    </div>
   )
 }

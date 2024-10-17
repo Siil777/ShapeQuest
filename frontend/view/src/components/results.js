@@ -1,6 +1,4 @@
-
-
-const handleSubmit = (selectedAnswer) => {
+const handleSubmit = (selectedAnswer, setAlert) => {
 
     fetch('http://localhost:5000/submit/answers',{
         method: 'POST',
@@ -11,8 +9,12 @@ const handleSubmit = (selectedAnswer) => {
     })
     .then((response)=>response.json())
     .then((data)=>{
-        console.log('Scores:', data.score);
-        console.log('Feedback', data.feedback);
+        setAlert({
+            score: data.score,
+            feedback: data.feedback,
+            visible: true
+        })
+        
     })
     .catch((error)=>console.error(error));
 }
