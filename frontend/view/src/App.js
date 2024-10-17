@@ -4,6 +4,7 @@ import CircularProgressIcon from './components/progressCircle.js';
 import ButtonGroupComponent from './components/buttons.js';
 import RadioButton from './components/radiobuttons.js';
 import handleSubmit from './components/results.js';
+import Badges from './components/badges.js';
 import './scss/style.scss';
 
 function App() {
@@ -35,7 +36,7 @@ function App() {
     const updateAnswers = [...allAnswers];
     updateAnswers[currenIndexQuestion] = selectedAnswer;
     setAllAnswers(updateAnswers);
-    if(currenIndexQuestion<questions.length-1){
+    if(currenIndexQuestion<questions.length){
       setCurrentIndexQuestion(currenIndexQuestion + 1);
       setProgress((prevProgress)=> Math.min(prevProgress + Math.floor(120/questions.length), 100));
     }
@@ -49,7 +50,7 @@ function App() {
     setSelectedAnswer(allAnswers[currenIndexQuestion - 1] ||'');
   }
   const finalResult = () => {
-    handleSubmit(allAnswers);
+    handleSubmit(allAnswers, questions);
   }
   const handleAnswerChange = (event) => {
     setSelectedAnswer(event.target.value);
@@ -61,6 +62,12 @@ function App() {
     {questions ?(
       <div>
       <div className='content'>
+        {currenIndexQuestion===questions.length && (
+          <Badges>
+            With kind regards
+          </Badges>
+            
+        )}
       <p>{questions[currenIndexQuestion]?.question}</p>
         <ul>
           {questions[currenIndexQuestion]?.answers.map((answer,index)=>(
@@ -78,10 +85,10 @@ function App() {
          <ButtonGroupComponent 
          onNext={handleNextQuestion}
          onPrevious={handlePreviousQuestion}
-         disableNext={currenIndexQuestion===questions.length-1}
-         disablePrevious={currenIndexQuestion===0}
+         disableNext={currenIndexQuestion===questions.length}
+         disablePrevious={currenIndexQuestion=== 0}
          />
-         {currenIndexQuestion===questions.length-1 && (
+         {currenIndexQuestion===questions.length && (
           <button className='btn btn-outline-primary' onClick={finalResult}>
             Finish
           </button>

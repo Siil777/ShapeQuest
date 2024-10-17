@@ -5,43 +5,21 @@ const cors = require('cors');
 const port = process.env.PORT || 5000;
 const app = express();
 
-const allowedOrigins = [
-    'https://siil777.github.io',
-    'http://localhost:3000',
-];
-
-const corsOptions = {
-    origin: (origin, callback) => {
-        console.log(`CORS check for origin: ${origin}`); 
-        if (!origin) {
-            console.log('No origin detected, allowing request.');
-            callback(null, true);
-        } else if (allowedOrigins.indexOf(origin) !== -1) {
-            console.log(`Origin ${origin} is allowed.`);
-            callback(null, true); 
-        } else {
-            console.log(`Origin ${origin} is not allowed.`);
-            callback(null, false);
-        }
-    },
-    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS',
-    credentials: true,
-    allowedHeaders: ['Authorization', 'Content-Type'],
-    optionsSuccessStatus: 200
-};
-
-app.use(cors(corsOptions));
+const allowedOrigins = ['https://siil777.github.io', 'http://localhost:3000','http://localhost:5000'];
 
 app.use((req, res, next) => {
-    res.setHeader("Access-Control-Allow-Origin", "https://siil777.github.io");
+    const origin = req.headers.origin;
+    if (allowedOrigins.includes(origin)) {
+        res.setHeader("Access-Control-Allow-Origin", origin);
+    }
+
     res.header(
         "Access-Control-Allow-Headers",
         "Origin, X-Requested-With, Content-Type, Accept"
     );
-    next()
 
+    next();
 });
-
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.get('/', (req,res)=>{
