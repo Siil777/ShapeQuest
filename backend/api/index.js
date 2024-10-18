@@ -45,44 +45,40 @@ app.post('/submit/answers', (req, res) => {
     let score = 0;
 
     userAnswers.forEach((answer) => {
-        const scoringAnswers = [
-            'Health improvement',
-            'Aesthetic reasons',
-            'Increased energy levels',
-            'Medical recommendation',
-            'Sedentary',
-            'Lightly active',
-            'Moderately active',
-            'Very active',
-            'I eat a balanced diet',
-            'I prefer fast food',
-            'I’m a vegetarian',
-            'I’m on a special diet (keto, paleo, etc.)',
-            'Yes',
-            'No',
-            'Lack of time',
-            'Cravings',
-            'Social pressure',
-            'Lack of motivation',
-            'Other',
-            'Under 1 month',
-            '1-3 months',
-            '3-6 months',
-            '6-12 months',
-            'More than a year',
-        ];
-
-        if (scoringAnswers.includes(answer)) score += 1;
+        if (answer === 'Health improvement') score += 1;
+        if (answer === 'Aesthetic reasons') score += 2;
+        if (answer === 'Increased energy levels') score += 3;
+        if (answer === 'Medical recommendation') score += 4;
+        if (answer === 'Sedentary') score += 5;
+        if (answer === 'Lightly active') score += 1;
+        if (answer === 'Moderately active') score += 2;
+        if (answer === 'Very active') score += 3;
+        if (answer === 'I eat a balanced diet') score += 4;
+        if (answer === 'I prefer fast food') score += 5;
+        if (answer === 'I’m a vegetarian') score += 1;
+        if (answer === 'I’m on a special diet (keto, paleo, etc.)') score += 2;
+        if (answer === 'Yes') score += 3;
+        if (answer === 'No') score += 4;
+        if (answer === 'Lack of time') score += 5;
+        if (answer === 'Cravings') score += 1;
+        if (answer === 'Social pressure') score += 2;
+        if (answer === 'Lack of motivation') score += 3;
+        if (answer === 'Other') score += 4;
+        if (answer === 'Under 1 month') score += 5;
+        if (answer === '1-3 months') score += 2;
+        if (answer === '3-6 months') score += 3;
+        if (answer === '6-12 months') score += 1;
+        if (answer === 'More than a year') score += 1;
     });
 
     let feedback = '';
 
     if (score >= 10) {
-        feedback = 'You are on the right path';
+        feedback = 'You are on the right path, no special diet required';
     } else if (score >= 20) {
-        feedback = 'This diet would be suitable for you the most';
+        feedback = 'Some fresh vegetable diet might be wouldn not be superfluous';
     } else {
-        feedback = 'Keep it going';
+        feedback = 'Keep it at';
     }
 
     res.json({

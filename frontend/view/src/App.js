@@ -1,4 +1,3 @@
-import './App.css';
 import React, { useEffect, useState } from 'react';
 import CircularProgressIcon from './components/progressCircle.js';
 import ButtonGroupComponent from './components/buttons.js';
@@ -6,6 +5,7 @@ import RadioButton from './components/radiobuttons.js';
 import handleSubmit from './components/results.js';
 import AlertComponent from './components/alertcomponent.js';
 import Badges from './components/badges.js';
+import ShapeQuestFrame from './components/frames.js';
 import './scss/style.scss';
 
 function App() {
@@ -17,7 +17,7 @@ function App() {
   const [allAnswers, setAllAnswers] = useState([]);
   const [alert, setAlert] = useState({ score: null, feedback: '', visible: false });
   useEffect(()=>{
-    fetch('http://localhost:5000/get/data',{
+    fetch('https://backend-tau-three-72.vercel.app/get/data',{
       method: 'GET',
       headers: {
         'Content-Type':'application/json'
@@ -63,7 +63,8 @@ function App() {
   if(loading) return <p>Loading...</p>
 
   return(
-   <div className='d-grid justify-content-center mt-5'>
+    <ShapeQuestFrame>
+         <div className='d-grid justify-content-center mt-5'>
     {questions ?(
       <div>
       <div className='content'>
@@ -74,12 +75,6 @@ function App() {
             
         )}
         <div>
-{/*         {currenIndexQuestion===questions.length && (
-          <DividerInModalDialog>
-            With kind regards
-          </DividerInModalDialog>
-            
-        )} */}
         </div>
       <p>{questions[currenIndexQuestion]?.question}</p>
         <ul>
@@ -114,6 +109,7 @@ function App() {
     )}
     <AlertComponent alert={alert} onClose={handleCloseAlert} />
    </div>
+    </ShapeQuestFrame>
   )
 }
 export default App;

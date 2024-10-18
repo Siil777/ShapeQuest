@@ -1,6 +1,6 @@
 const handleSubmit = (selectedAnswer, setAlert) => {
 
-    fetch('http://localhost:5000/submit/answers',{
+    fetch('https://backend-tau-three-72.vercel.app/submit/answers',{
         method: 'POST',
         headers: {
             'Content-Type':'application/json'
