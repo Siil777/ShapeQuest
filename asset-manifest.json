@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/ShapeQuest/static/css/main.05f31c2b.css",
-    "main.js": "/ShapeQuest/static/js/main.93ee541f.js",
+    "main.js": "/ShapeQuest/static/js/main.0d2e1680.js",
     "static/js/453.7a8c23ee.chunk.js": "/ShapeQuest/static/js/453.7a8c23ee.chunk.js",
     "index.html": "/ShapeQuest/index.html",
     "main.05f31c2b.css.map": "/ShapeQuest/static/css/main.05f31c2b.css.map",
-    "main.93ee541f.js.map": "/ShapeQuest/static/js/main.93ee541f.js.map",
+    "main.0d2e1680.js.map": "/ShapeQuest/static/js/main.0d2e1680.js.map",
     "453.7a8c23ee.chunk.js.map": "/ShapeQuest/static/js/453.7a8c23ee.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.05f31c2b.css",
-    "static/js/main.93ee541f.js"
+    "static/js/main.0d2e1680.js"
   ]
 }
